@@ -93,5 +93,5 @@ Add application screenshots to a `screenshots/` folder.
 
 Record a 3–5 minute demonstration showing employee creation, viewing, editing, deletion, and dynamic UI updates. Add the shareable video link here after uploading it.
 
-Demo video: Pending upload.
+Demo video: https://drive.google.com/file/d/1PMyMSvihOsGtbmOD1bJC7HxsHUUJTciY/view?usp=sharing
 
