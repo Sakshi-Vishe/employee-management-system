@@ -119,11 +119,19 @@ Verify each feature against the running application before marking it as complet
 - The database server is accessible locally on port `3306`.
 - Database credentials are configured locally and are not included in this README.
 - Features that have not been tested end to end should be treated as pending verification.
-
 ## 11. Screenshots and Demonstration
 
-Application screenshots should be added to the `screenshots/` folder.
+### Application Screenshots
 
-A short demonstration video should show employee creation, viewing, editing, deletion, and the application's data-driven UI. Add the shareable video link here after uploading it.
+Application screenshots are available in the `screenshots/` folder.
 
-**Demo video:** Pending upload.
+### Demo Video
+
+[Watch the Employee Management System Demo](https://drive.google.com/file/d/1PMyMSvihOsGtbmOD1bJC7HxsHUUJTciY/view?usp=sharing)
+
+The demonstration video covers the following functionalities:
+- Creating a new employee
+- Viewing employee details
+- Editing employee information
+- Deleting an employee
+- Demonstrating the application's data-driven UI
