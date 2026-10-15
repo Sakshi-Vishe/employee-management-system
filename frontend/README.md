@@ -1,59 +1,129 @@
-# Frontend
+# Employee Management System (EMS)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+## 1. Project Overview
 
-## Development server
+The Employee Management System (EMS) is a full-stack application for managing employee records. It uses an Angular frontend, a Spring Boot REST API backend, and a MySQL-compatible database.
 
-To start a local development server, run:
+## 2. Technology Stack
+
+| Technology | Version |
+|---|---|
+| Frontend | Angular 21.2.25 |
+| Node.js | 20.19.6 |
+| npm | 10.8.2 |
+| Backend | Spring Boot 3.5.6 |
+| Java | 17 |
+| Database | MySQL-compatible database |
+| API communication | REST APIs using JSON |
+
+**Database version:** Confirm the version of the database instance used to run this project before submitting.
+
+## 3. Project Structure
+
+- `frontend/` — Angular frontend application
+- `ems/` — Spring Boot backend application
+- `backend/` — Additional backend-related project folder
+- `database/schema.sql` — Database schema script
+- `database/seed.sql` — Initial/sample data script
+- `postman/EMS-API-Collection.json` — Postman API collection
+
+## 4. Prerequisites
+
+Install the following before running the project:
+
+- Java Development Kit (JDK) 17
+- Node.js 20.19.6 and npm 10.8.2
+- Angular CLI compatible with Angular 21
+- MySQL-compatible database server
+- Git
+
+## 5. Database Setup
+
+1. Start your MySQL-compatible database server.
+2. Open MySQL Workbench or another MySQL client.
+3. Create the database named `employee_management` if it does not already exist.
+4. Run `database/schema.sql`.
+5. Run `database/seed.sql` to insert the initial data.
+6. Check the database connection settings in `ems/src/main/resources/application.properties`.
+
+The configured database URL is:
+
+`jdbc:mysql://localhost:3306/employee_management`
+
+Ensure that the configured username and password match your local database installation. Do not commit real passwords or other secrets to GitHub.
+
+## 6. Start the Backend
+
+Open a terminal at the project root and run:
 
 ```bash
+cd ems
+./mvnw spring-boot:run
+```
+
+If the Maven wrapper is unavailable, use Maven installed on your system:
+
+```bash
+mvn spring-boot:run
+```
+
+The configured backend port is `8081`.
+
+Backend base URL: `http://localhost:8081`
+
+## 7. Start the Frontend
+
+Open a **second terminal** at the project root and run:
+
+```bash
+cd frontend
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open the local frontend URL displayed in the terminal, typically:
 
-## Code scaffolding
+`http://localhost:4200`
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Keep both the frontend and backend running while using the application.
 
-```bash
-ng generate component component-name
-```
+## 8. API Documentation
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The Postman collection is available at:
 
-```bash
-ng generate --help
-```
+`postman/EMS-API-Collection.json`
 
-## Building
+Import this file into Postman to review and test the API requests. The configured base URL is `http://localhost:8081`.
 
-To build the project run:
+API requests should be tested against the running backend and database. Update request bodies and endpoint paths in the collection if required by the actual controller mappings.
 
-```bash
-ng build
-```
+## 9. Features
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The project is intended to support:
 
-## Running unit tests
+- Employee record creation
+- Viewing employee records
+- Updating employee records
+- Deleting employee records
+- Frontend and backend communication through REST APIs
+- Database-backed employee information
+- Department and designation-related data
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Verify each feature against the running application before marking it as complete.
 
-```bash
-ng test
-```
+## 10. Assumptions and Limitations
 
-## Running end-to-end tests
+- The application runs locally during development.
+- The backend uses port `8081`.
+- The frontend uses the Angular development server, normally on port `4200`.
+- The database server is accessible locally on port `3306`.
+- Database credentials are configured locally and are not included in this README.
+- Features that have not been tested end to end should be treated as pending verification.
 
-For end-to-end (e2e) testing, run:
+## 11. Screenshots and Demonstration
 
-```bash
-ng e2e
-```
+Application screenshots should be added to the `screenshots/` folder.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+A short demonstration video should show employee creation, viewing, editing, deletion, and the application's data-driven UI. Add the shareable video link here after uploading it.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Demo video:** Pending upload.
