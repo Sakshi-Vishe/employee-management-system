@@ -1,0 +1,159 @@
+
+<div class="employees-page">
+  <div class="page-header">
+    <div>
+      <h1>Departments</h1>
+      <p>Manage company departments</p>
+    </div>
+
+    <button
+      type="button"
+      class="primary-btn"
+      (click)="openAddForm()"
+    >
+      + Add Department
+    </button>
+  </div>
+
+  @if (successMessage) {
+    <div class="success-message">{{ successMessage }}</div>
+  }
+
+  @if (error) {
+    <div class="error-message">{{ error }}</div>
+  }
+
+  @if (showForm) {
+    <section class="employee-form-card">
+      <div class="form-heading">
+        <h2>{{ isEditing ? 'Edit Department' : 'Add Department' }}</h2>
+        <button type="button" class="cancel-btn" (click)="cancelForm()">
+          Close
+        </button>
+      </div>
+
+      <form #departmentForm="ngForm" (ngSubmit)="saveDepartment()">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="departmentName">Department Name *</label>
+            <input
+              id="departmentName"
+              type="text"
+              name="name"
+              [(ngModel)]="form.name"
+              required
+              maxlength="100"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="departmentCode">Department Code *</label>
+            <input
+              id="departmentCode"
+              type="text"
+              name="code"
+              [(ngModel)]="form.code"
+              required
+              maxlength="20"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="departmentStatus">Status</label>
+            <select
+              id="departmentStatus"
+              name="active"
+              [(ngModel)]="form.active"
+            >
+              <option [ngValue]="true">Active</option>
+              <option [ngValue]="false">Inactive</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button
+            type="button"
+            class="cancel-btn"
+            (click)="cancelForm()"
+            [disabled]="saving"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="primary-btn"
+            [disabled]="saving || departmentForm.invalid"
+          >
+            {{ saving ? 'Saving...' : (isEditing ? 'Update Department' : 'Save Department') }}
+          </button>
+        </div>
+      </form>
+    </section>
+  }
+
+  <section class="employee-table-card">
+    <div class="table-heading">
+      <h2>Department Records</h2>
+    </div>
+
+    @if (loading) {
+      <p class="empty-state">Loading departments...</p>
+    } @else if (departments.length === 0) {
+      <p class="empty-state">No departments found.</p>
+    } @else {
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Department Name</th>
+              <th>Code</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (department of departments; track department.id) {
+              <tr>
+                <td>{{ department.id }}</td>
+                <td>{{ department.name }}</td>
+                <td>{{ department.code }}</td>
+                <td>
+                  <span
+                    [class.active-status]="department.active"
+                    [class.inactive-status]="!department.active"
+                  >
+                    {{ department.active ? 'Active' : 'Inactive' }}
+                  </span>
+                </td>
+                <td class="action-buttons">
+                  <button
+                    type="button"
+                    class="edit-btn"
+                    (click)="editDepartment(department)"
+                  >
+                    Edit
+                  </button>
+
+                  
+<button
+  type="button"
+  class="delete-btn"
+  [disabled]="deletingId === department.id"
+  (click)="deleteDepartment(department)"
+>
+  {{ deletingId === department.id ? 'Deleting...' : 'Delete' }}
+</button>
+
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+</div>

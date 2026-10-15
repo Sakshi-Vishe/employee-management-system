@@ -1,0 +1,82 @@
+
+<div class="app-layout">
+  <aside class="sidebar">
+    <h2>EMS</h2>
+    <p class="subtitle">Employee Management</p>
+
+    <nav>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Dashboard
+      </a>
+      <a routerLink="/designations" routerLinkActive="active">
+  Designations
+</a>
+      <a routerLink="/employees" routerLinkActive="active">
+        Employees
+      </a>
+      <a routerLink="/departments" routerLinkActive="active">
+        Departments
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">HR Administration</div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <h1>Dashboard</h1>
+        <p>Welcome to Employee Management System</p>
+      </div>
+      <span class="admin-badge">HR Admin</span>
+    </header>
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <p>Total Employees</p>
+        <h2>{{ stats().totalEmployees }}</h2>
+        <span>Employee records</span>
+      </article>
+
+      <article class="stat-card">
+        <p>Active Employees</p>
+        <h2>{{ stats().activeEmployees }}</h2>
+        <span>Currently active</span>
+      </article>
+
+      <article class="stat-card">
+        <p>Total Departments</p>
+        <h2>{{ stats().totalDepartments }}</h2>
+        <span>Organizational units</span>
+      </article>
+
+      <article class="stat-card">
+        <p>Active Departments</p>
+        <h2>{{ stats().activeDepartments }}</h2>
+        <span>Currently active</span>
+      </article>
+    </section>
+
+    <section class="content-card">
+      <div>
+        <h2>Employee Management</h2>
+        <p>Manage employee records, departments, and designations.</p>
+      </div>
+
+      <div class="action-row">
+        <button type="button" routerLink="/employees">
+          View Employees
+        </button>
+
+        <button
+          type="button"
+          class="secondary"
+          routerLink="/departments">
+          Manage Departments
+        </button>
+      </div>
+    </section>
+
+    <footer>Employee Management System · HR Portal</footer>
+  </main>
+</div>

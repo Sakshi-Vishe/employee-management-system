@@ -1,0 +1,66 @@
+{
+  "info": {
+    "name": "Employee Management System API",
+    "description": "EMS REST API collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:8081"},
+    {"key": "employeeId", "value": "1"}
+  ],
+  "item": [
+    {
+      "name": "Get Employees",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/employees"
+      }
+    },
+    {
+      "name": "Get Employee By ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/employees/{{employeeId}}"
+      }
+    },
+    {
+      "name": "Create Employee",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{}"},
+        "url": "{{baseUrl}}/api/employees"
+      }
+    },
+    {
+      "name": "Update Employee",
+      "request": {
+        "method": "PUT",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{}"},
+        "url": "{{baseUrl}}/api/employees/{{employeeId}}"
+      }
+    },
+    {
+      "name": "Delete Employee",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/employees/{{employeeId}}"
+      }
+    },
+    {
+      "name": "Get Form Configuration",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/form-config/employee"
+      }
+    },
+    {
+      "name": "Get Departments",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/lookups/departments"
+      }
+    }
+  ]
+}

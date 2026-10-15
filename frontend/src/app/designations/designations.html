@@ -1,0 +1,145 @@
+
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Designations</h1>
+      <p>Manage job roles within your departments.</p>
+    </div>
+
+    <button
+      type="button"
+      class="primary-btn"
+      (click)="openAddForm()">
+      + Add Designation
+    </button>
+  </div>
+
+  <div *ngIf="error" class="message error-message">
+    {{ error }}
+    <button type="button" (click)="error = ''" aria-label="Close error">×</button>
+  </div>
+
+  <div *ngIf="successMessage" class="message success-message">
+    {{ successMessage }}
+    <button type="button" (click)="successMessage = ''" aria-label="Close message">×</button>
+  </div>
+
+  <section class="form-card" *ngIf="showForm">
+    <h2>{{ isEditing ? 'Edit Designation' : 'Add Designation' }}</h2>
+
+    <form (ngSubmit)="saveDesignation()">
+      <div class="form-group">
+        <label for="designationName">Designation Name</label>
+        <input
+          id="designationName"
+          type="text"
+          name="name"
+          [(ngModel)]="form.name"
+          placeholder="e.g. Java Developer"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="departmentId">Department</label>
+        <select
+          id="departmentId"
+          name="departmentId"
+          [(ngModel)]="form.departmentId"
+          required>
+          <option [ngValue]="0">Select department</option>
+          <option
+            *ngFor="let department of departments"
+            [ngValue]="department.id">
+            {{ department.name }} ({{ department.code }})
+          </option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button
+          class="primary-btn"
+          type="submit"
+          [disabled]="saving">
+          {{ saving ? 'Saving...' : (isEditing ? 'Update' : 'Save') }}
+        </button>
+
+        <button
+          class="secondary-btn"
+          type="button"
+          (click)="cancelForm()"
+          [disabled]="saving">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <section class="table-card">
+    <div class="table-header">
+      <h2>Designation List</h2>
+
+      <div class="filter-group">
+        <label for="departmentFilter">Filter by department:</label>
+        <select
+          id="departmentFilter"
+          name="departmentFilter"
+          [(ngModel)]="selectedDepartmentId">
+          <option [ngValue]="null">All Departments</option>
+          <option
+            *ngFor="let department of departments"
+            [ngValue]="department.id">
+            {{ department.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <p *ngIf="loading" class="empty-message">
+      Loading designations...
+    </p>
+
+    <div class="table-wrapper" *ngIf="!loading">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Designation Name</th>
+            <th>Department</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let designation of filteredDesignations">
+            <td>{{ designation.id }}</td>
+            <td>{{ designation.name }}</td>
+            <td>{{ getDepartmentName(designation.departmentId) }}</td>
+            <td class="actions">
+              <button
+                type="button"
+                class="edit-btn"
+                (click)="editDesignation(designation)">
+                Edit
+              </button>
+
+              <button
+                type="button"
+                class="delete-btn"
+                (click)="deleteDesignation(designation)"
+                [disabled]="deletingId === designation.id">
+                {{ deletingId === designation.id ? 'Deleting...' : 'Delete' }}
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredDesignations.length === 0">
+            <td colspan="4" class="empty-message">
+              {{ error ? 'Unable to load designations.' : 'No designations found.' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
